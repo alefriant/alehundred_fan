@@ -110,11 +110,13 @@ Right-click the fan icon in the tray:
 
 Thresholds are saved in `alehundred_fan.json` next to the script. You can edit it by hand or use the Set thresholds menu. Default:
 
+```json
 {
   "temp_high": 55,
   "temp_low": 48,
   "check_interval": 5
 }
+```
 
 ## Boot behavior
 
@@ -130,11 +132,13 @@ Reads from `MSAcpi_ThermalZoneTemperature` (ACPI thermal zone THRM_0). This is t
 
 Everything goes to `alehundred_fan.log` next to the script. Every reading, every transition, every error. Sample:
 
+```
 2026-03-13 15:48:35  INFO       Initial mode: MAX (boot protection)
 2026-03-13 15:48:41  INFO     88.1 C | MAX | Fans: 4000/3800 RPM
 2026-03-13 15:48:48  INFO     92.1 C | MAX | Fans: 5200/5200 RPM
 2026-03-13 15:49:25  INFO     83.1 C | MAX | Fans: 5200/5200 RPM
 2026-03-13 15:49:50  INFO     77.1 C | MAX | Fans: 5200/5200 RPM
+```
 
 ## License
 
