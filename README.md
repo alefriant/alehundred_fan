@@ -18,6 +18,14 @@ A dead simple 0/1 approach. No fancy fan curves, no overthinking it.
 
 That's it. The BIOS already has a decent fan curve for normal temps. All we need is a safety net that slams the fans to max when things get hot. Why complicate what works with a binary decision.
 
+## Why 0/1 and not a fan curve
+
+Most people looking into HP Victus fan control end up giving up because there's no way to set a proper fan curve through WMI. The BIOS only exposes auto and max, no percentages, no steps. So they just accept the terrible defaults and move on.
+
+Instead of fighting what the hardware doesn't support, I worked with what it does. My Auto works fine under 55C. Max works fine above 55C. That's two states, one threshold, problem solved. No driver hacking, no embedded controller writes, no risk of bricking anything.
+
+Sometimes the simplest approach is the one nobody tries because it doesn't look impressive enough.
+
 ## How it works
 
 Uses WMI BIOS calls through the `hpqBIntM` interface exposed by the `ACPI\PNP0C14` driver. Lightweight, direct, no background services.
@@ -102,13 +110,11 @@ Right-click the fan icon in the tray:
 
 Thresholds are saved in `alehundred_fan.json` next to the script. You can edit it by hand or use the Set thresholds menu. Default:
 
-```json
 {
   "temp_high": 55,
   "temp_low": 48,
   "check_interval": 5
 }
-```
 
 ## Boot behavior
 
@@ -124,17 +130,11 @@ Reads from `MSAcpi_ThermalZoneTemperature` (ACPI thermal zone THRM_0). This is t
 
 Everything goes to `alehundred_fan.log` next to the script. Every reading, every transition, every error. Sample:
 
-```
 2026-03-13 15:48:35  INFO       Initial mode: MAX (boot protection)
 2026-03-13 15:48:41  INFO     88.1 C | MAX | Fans: 4000/3800 RPM
 2026-03-13 15:48:48  INFO     92.1 C | MAX | Fans: 5200/5200 RPM
 2026-03-13 15:49:25  INFO     83.1 C | MAX | Fans: 5200/5200 RPM
 2026-03-13 15:49:50  INFO     77.1 C | MAX | Fans: 5200/5200 RPM
-```
-
-## Why 0/1 and not a fan curve
-
-Because the BIOS already handles normal temps fine at 2600 RPM. The only problem is it doesn't react fast enough to spikes. A fan curve would add complexity for zero real benefit. Under 55C the auto mode is silent and adequate. Over 55C you want max cooling immediately, not some intermediate speed that lets the temp keep climbing. Everyone overcomplicates this trying to be clever with curves and steps. Just 0 or 1. Done.
 
 ## License
 
