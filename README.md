@@ -40,6 +40,8 @@ If it returns an instance, you're good.
 
 - HP Victus 15-fb0xxx (AMD Ryzen 5 5600H, BIOS F.25, Windows 11) — built and tested on this one
 
+![Alehundred Fan - Temperature and Fan Speed](alehundred_fan_chart.png)
+
 ### Should work but not tested
 
 - HP Victus 15-fb series (AMD, 2022-2023)
