@@ -137,3 +137,5 @@ Because the BIOS already handles normal temps fine at 2600 RPM. The only problem
 ## License
 
 Do whatever you want with it. If it helps keep your Victus alive longer, that's all that matters.
+
+HP, Victus and Omen are trademarks of HP Inc. This project is not affiliated with or endorsed by HP.
